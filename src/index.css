@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+
+:root {
+  --bg: #f2f0ef;
+  --bg-elevated: #ffffff;
+  --surface: #ebebea;
+  --border: #d4d4d2;
+  --text: #3a3a38;
+  --text-muted: #6b6b68;
+  --accent: #4a4a47;
+  --accent-hover: #2e2e2c;
+  --ring: rgba(74, 74, 71, 0.25);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --font: 'DM Sans', system-ui, sans-serif;
+  --max: 1040px;
+  --page-gutter: 0.625rem;
+  /* Snap offset ≈ safe area + nav row + progress track (2px); see Layout `.header-inner` */
+  --header-row-min: 64px;
+  --header-h: calc(
+    env(safe-area-inset-top, 0px) + var(--header-row-min) + 2px
+  );
+  --description-size: 0.9rem;
+  /* Section taglines — same scale as home `.hero--fill .hero-copy .lede` */
+  --section-caption-size: clamp(1.06rem, 2.2vw, 1.22rem);
+
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--text);
+  background-color: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 600;
+  color: var(--accent-hover);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  margin: 0 0 0.5rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin: 0 0 0.75rem;
+}
+
+h3 {
+  font-size: 1.05rem;
+  margin: 0 0 0.5rem;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--surface);
+  color: var(--accent-hover);
+}

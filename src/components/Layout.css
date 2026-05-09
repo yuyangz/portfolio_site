@@ -1,0 +1,298 @@
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout--snap {
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding-top: env(safe-area-inset-top, 0px);
+  background: rgba(242, 240, 239, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-left: max(var(--page-gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--page-gutter), env(safe-area-inset-right, 0px));
+  min-height: var(--header-row-min);
+  height: var(--header-row-min);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+button.brand {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--accent-hover);
+  transition: opacity 0.2s ease;
+}
+
+.brand:hover {
+  opacity: 0.85;
+}
+
+.brand-mark {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--accent-hover);
+  transition: transform 0.25s ease;
+}
+
+.brand:hover .brand-mark {
+  transform: rotate(45deg);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+button.nav-link {
+  border: none;
+  background: none;
+  padding: 0.45rem 0.85rem;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.nav-link {
+  position: relative;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--accent-hover);
+  background: var(--surface);
+}
+
+.nav-link--active {
+  color: var(--accent-hover);
+  background: var(--surface);
+}
+
+.nav-link--active::after {
+  content: '';
+  position: absolute;
+  left: 0.85rem;
+  right: 0.85rem;
+  bottom: 0.2rem;
+  height: 2px;
+  background: var(--accent-hover);
+  border-radius: 1px;
+  animation: navLine 0.25s ease;
+}
+
+@keyframes navLine {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+.main {
+  flex: 1;
+  animation: pageEnter 0.45s ease both;
+}
+
+.main--snap {
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-y: contain;
+  animation: none;
+}
+
+/* One scroll container only (`.main--snap`); sections grow vertically — no nested scroll areas */
+.snap-section {
+  min-height: calc(100dvh - var(--header-h));
+  overflow-x: hidden;
+  overflow-y: visible;
+  scroll-snap-align: start;
+  /* Keep section transitions sticky without reintroducing nested sub-scrollers. */
+  scroll-snap-stop: always;
+}
+
+.snap-section-inner {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  padding: 2rem clamp(3.75rem, 7vw, 5rem) 2.5rem;
+}
+
+.snap-section-inner--resume {
+  padding-top: 2rem;
+  /* Extra space below Skills so the last block isn’t flush with the snap viewport */
+  padding-bottom: clamp(2.75rem, 5vh, 4rem);
+}
+
+.snap-section--home {
+  display: flex;
+  flex-direction: column;
+}
+
+.snap-section-inner--home {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.snap-footer {
+  scroll-snap-align: end;
+  scroll-snap-stop: always;
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.footer {
+  border-top: 1px solid var(--border);
+  background: var(--bg-elevated);
+}
+
+/* Match `.snap-section-inner`: full width + same gutters (no `--max` box, so left edge lines up with sections). */
+.footer-inner {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  padding: 1.25rem clamp(3.75rem, 7vw, 5rem);
+  padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+}
+
+.footer-note {
+  display: block;
+  max-width: 100%;
+  font-size: clamp(0.7rem, 0.65rem + 0.35vw, 0.8125rem);
+  line-height: 1.45;
+  color: var(--text-muted);
+  text-wrap: balance;
+}
+
+.scroll-progress-track {
+  height: 2px;
+  width: 100%;
+  background: var(--border);
+}
+
+.scroll-progress-fill {
+  height: 100%;
+  background: var(--accent-hover);
+  transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main {
+    animation: none;
+  }
+
+  .main--snap {
+    scroll-behavior: auto;
+  }
+
+  .snap-section {
+    scroll-snap-stop: normal;
+  }
+
+  .nav-link--active::after {
+    animation: none;
+  }
+
+  .brand:hover .brand-mark {
+    transform: none;
+  }
+
+  .scroll-progress-fill {
+    transition: none;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    /* Wrapped brand + nav — approximates taller row for snap `100dvh - header` */
+    --header-row-min: 112px;
+  }
+
+  .snap-section-inner {
+    padding-left: max(var(--page-gutter), env(safe-area-inset-left, 0px));
+    padding-right: max(var(--page-gutter), env(safe-area-inset-right, 0px));
+  }
+
+  .footer-inner {
+    padding-left: max(var(--page-gutter), env(safe-area-inset-left, 0px));
+    padding-right: max(var(--page-gutter), env(safe-area-inset-right, 0px));
+  }
+
+  .header-inner {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 0;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+  }
+
+  .nav {
+    width: 100%;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+}
