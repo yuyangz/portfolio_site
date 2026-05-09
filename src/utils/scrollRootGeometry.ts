@@ -44,6 +44,8 @@ export function programmaticScrollTo(
     behavior?: ScrollBehavior
     /** After snap returns, clamp if the browser moved past this (keyboard footer stop). */
     postRestoreMax?: number
+    /** Fires once scroll + snap restore settle (scrollend, rAF for instant, or fallback timeout). */
+    onSettled?: () => void
   },
 ): void {
   const postRestoreMax = options?.postRestoreMax
@@ -71,6 +73,7 @@ export function programmaticScrollTo(
     root.removeEventListener('scrollend', finish)
     window.clearTimeout(fallbackTimer)
     applyCleanup()
+    options?.onSettled?.()
   }
 
   root.style.scrollSnapType = 'none'

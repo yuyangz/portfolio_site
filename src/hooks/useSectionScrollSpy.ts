@@ -23,7 +23,7 @@ function pickSection(root: HTMLElement): SectionId {
 }
 
 export function useSectionScrollSpy() {
-  const { scrollRootRef, setActiveSection } = useScrollNav()
+  const { scrollRootRef, setActiveSection, navScrollLockRef } = useScrollNav()
 
   useLayoutEffect(() => {
     let cancelled = false
@@ -37,6 +37,7 @@ export function useSectionScrollSpy() {
       let innerRaf = 0
 
       const tick = () => {
+        if (navScrollLockRef.current !== null) return
         if (!SECTION_IDS.every((id) => document.getElementById(id))) return
         const active = pickSection(root)
         setActiveSection((prev) => (prev === active ? prev : active))
@@ -117,5 +118,5 @@ export function useSectionScrollSpy() {
       cancelAnimationFrame(waitRootRaf)
       detach?.()
     }
-  }, [scrollRootRef, setActiveSection])
+  }, [scrollRootRef, setActiveSection, navScrollLockRef])
 }

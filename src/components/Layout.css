@@ -296,3 +296,20 @@ button.nav-link {
     flex-wrap: wrap;
   }
 }
+
+/* Touch-primary phones: no section snap + centered nav (narrow desktop keeps snap + right-aligned links). */
+@media (max-width: 640px) and (pointer: coarse) {
+  .main--snap {
+    scroll-snap-type: none;
+  }
+
+  .snap-section,
+  .snap-footer {
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+  }
+
+  .nav {
+    justify-content: center;
+  }
+}
