@@ -579,8 +579,126 @@ button.btn {
 }
 
 @media (max-width: 640px) {
+  /*
+   * Long sections + mandatory scroll-snap otherwise keep snapping to section top,
+   * so users can’t scroll to content below the fold (e.g. Contact → Elsewhere).
+   */
+  #resume.snap-section,
+  #contact.snap-section {
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+  }
+
   .contact-layout .contact-card:first-child {
     min-height: unset;
+  }
+
+  /* Shorter default message area so Elsewhere stays nearer the fold */
+  .contact-form textarea {
+    min-height: 9rem;
+  }
+
+  .contact-layout .contact-card:last-child {
+    scroll-margin-bottom: max(2rem, calc(env(safe-area-inset-bottom, 0px) + 1.25rem));
+  }
+
+  .page.contact .contact-layout {
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+  }
+
+  /* Resume: tighter type so title/date rows and headings fit better on narrow screens */
+  .resume-caption {
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+
+  .resume-section h2 {
+    font-size: 0.68rem;
+    margin-bottom: 0.65rem;
+    padding-bottom: 0.3rem;
+  }
+
+  .resume-company-head {
+    gap: 0.25rem 0.65rem;
+  }
+
+  .resume-company-head h3 {
+    font-size: clamp(0.98rem, 4vw, 1.12rem);
+  }
+
+  .resume-location,
+  .resume-period {
+    font-size: 0.72rem;
+  }
+
+  .resume-role-row {
+    gap: 0.35rem 0.65rem;
+  }
+
+  .resume-role-title {
+    font-size: 0.82rem;
+    line-height: 1.35;
+  }
+
+  .resume-role-subtitle {
+    font-size: 0.76rem;
+    line-height: 1.4;
+    padding-left: 0.85rem;
+  }
+
+  .resume-edu-row,
+  .resume-edu-degree-row {
+    gap: 0.35rem 0.65rem;
+  }
+
+  .resume-edu-school {
+    font-size: clamp(0.98rem, 4vw, 1.08rem);
+    line-height: 1.22;
+  }
+
+  .resume-edu-dates,
+  .resume-edu-gpa {
+    font-size: 0.72rem;
+  }
+
+  .resume-edu-degree {
+    font-size: 0.82rem;
+    line-height: 1.38;
+  }
+
+  .resume-edu-minor {
+    font-size: 0.76rem;
+    padding-left: 0.85rem;
+  }
+
+  .resume-skills-label {
+    font-size: 0.82rem;
+  }
+
+  .resume-section .resume-skills-items {
+    font-size: 0.76rem;
+    line-height: 1.42;
+    padding-left: 0.85rem;
+  }
+
+  .snap-section-inner--resume .resume-section {
+    margin-bottom: 1.1rem;
+  }
+
+  .snap-section-inner--resume .resume-company-blocks {
+    gap: 1rem;
+  }
+
+  .snap-section-inner--resume .resume-role-list {
+    gap: 0.55rem;
+  }
+
+  .snap-section-inner--resume .resume-edu {
+    gap: 1rem;
+  }
+
+  .snap-section-inner--resume .resume-skills-list {
+    gap: 0.85rem;
   }
 
   .hero-layout {
