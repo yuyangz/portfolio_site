@@ -188,6 +188,30 @@
   .hero--fill .hero-photo {
     max-width: min(300px, 78vw);
   }
+
+  /* Stacked hero: equal visual inset — center copy + CTAs (was left-aligned with empty right balance). */
+  .hero--fill .hero-copy {
+    text-align: center;
+    max-width: min(100%, 26rem);
+    margin-inline: auto;
+  }
+
+  .hero--fill .hero-copy .eyebrow {
+    margin-inline: auto;
+  }
+
+  .hero--fill .hero-copy h1 {
+    margin-inline: auto;
+  }
+
+  .hero--fill .hero-copy .lede {
+    margin-inline: auto;
+    max-width: 34ch;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
 }
 
 button.btn {
@@ -588,6 +612,20 @@ button.btn {
     scroll-snap-align: none;
     scroll-snap-stop: normal;
   }
+
+  /* Extra bottom room so Elsewhere clears iPhone Safari toolbar + home indicator */
+  section#contact.snap-section > .snap-section-inner {
+    padding-bottom: max(3rem, calc(env(safe-area-inset-bottom, 0px) + 6rem));
+  }
+
+  .contact-layout .contact-card:last-child {
+    scroll-margin-bottom: max(6rem, calc(env(safe-area-inset-bottom, 0px) + 8rem));
+    padding-bottom: max(0.75rem, calc(env(safe-area-inset-bottom, 0px) + 1rem));
+  }
+
+  .page.contact .contact-layout {
+    padding-bottom: max(3rem, calc(env(safe-area-inset-bottom, 0px) + 5rem));
+  }
 }
 
 @media (max-width: 640px) {
@@ -598,14 +636,6 @@ button.btn {
   /* Shorter default message area so Elsewhere stays nearer the fold */
   .contact-form textarea {
     min-height: 9rem;
-  }
-
-  .contact-layout .contact-card:last-child {
-    scroll-margin-bottom: max(2rem, calc(env(safe-area-inset-bottom, 0px) + 1.25rem));
-  }
-
-  .page.contact .contact-layout {
-    padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
   }
 
   /* Resume: tighter type so title/date rows and headings fit better on narrow screens */
