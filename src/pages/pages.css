@@ -723,6 +723,12 @@ a.project-card:focus-visible {
   color: var(--text-muted);
 }
 
+/* Keeps header height stable when caption is hidden during load — avoids pokeball jumping vertically */
+.secret-subtitle--concealed {
+  visibility: hidden;
+  user-select: none;
+}
+
 .secret-stage {
   flex: 1;
   width: 100%;

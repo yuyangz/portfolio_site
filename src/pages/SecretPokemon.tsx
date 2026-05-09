@@ -260,11 +260,12 @@ export function SecretPokemon() {
         <div className="page secret-page">
           <header className="page-header">
             <h1>Secret Section: What&apos;s your Pokemon card?</h1>
-            {!showSpinningPokeball ? (
-              <p className="secret-subtitle">
-                Click the Poké Ball to find out!
-              </p>
-            ) : null}
+            <p
+              className={`secret-subtitle${showSpinningPokeball ? ' secret-subtitle--concealed' : ''}`}
+              aria-hidden={showSpinningPokeball}
+            >
+              Click the Poké Ball to find out!
+            </p>
           </header>
           <div className="secret-stage">
             <div
