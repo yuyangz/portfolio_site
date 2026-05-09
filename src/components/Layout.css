@@ -297,10 +297,15 @@ button.nav-link {
   }
 }
 
-/* Touch-primary phones: no section snap + centered nav (narrow desktop keeps snap + right-aligned links). */
-@media (max-width: 640px) and (pointer: coarse) {
+/*
+ * Touch / typical phones: disable mandatory snap at any width (landscape phones are often >640px).
+ * Also covers phones that report fine pointer via `(hover: none)` + width cap.
+ * Narrow desktop mouse keeps snap (`MOBILE_LAYOUT_QUERY` must stay aligned with this).
+ */
+@media (pointer: coarse), ((hover: none) and (max-width: 932px)) {
   .main--snap {
     scroll-snap-type: none;
+    scroll-padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 
   .snap-section,

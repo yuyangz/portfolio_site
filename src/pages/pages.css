@@ -578,17 +578,19 @@ button.btn {
   overflow-wrap: break-word;
 }
 
-@media (max-width: 640px) {
-  /*
-   * Long sections + mandatory scroll-snap otherwise keep snapping to section top,
-   * so users can’t scroll to content below the fold (e.g. Contact → Elsewhere).
-   */
+/*
+ * Long sections + mandatory snap: narrow windows can’t scroll to below-the-fold content (Elsewhere).
+ * Matches phone landscape widths; redundant when Layout disables snap but protects fine-pointer cases.
+ */
+@media (max-width: 932px) {
   #resume.snap-section,
   #contact.snap-section {
     scroll-snap-align: none;
     scroll-snap-stop: normal;
   }
+}
 
+@media (max-width: 640px) {
   .contact-layout .contact-card:first-child {
     min-height: unset;
   }

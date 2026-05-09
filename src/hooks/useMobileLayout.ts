@@ -1,7 +1,8 @@
 import { useSyncExternalStore } from 'react'
 
-/** Matches `Layout.css` touch-mobile block — `(pointer: coarse)` avoids treating narrow desktop windows as mobile */
-export const MOBILE_LAYOUT_QUERY = '(max-width: 640px) and (pointer: coarse)'
+/** Matches `Layout.css` — coarse pointer or typical phone viewport + no hover */
+export const MOBILE_LAYOUT_QUERY =
+  '(pointer: coarse), ((hover: none) and (max-width: 932px))'
 
 function getMq() {
   return window.matchMedia(MOBILE_LAYOUT_QUERY)
