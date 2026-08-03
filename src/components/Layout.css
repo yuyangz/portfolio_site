@@ -3,17 +3,19 @@
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  background: var(--bg);
+  background:
+    linear-gradient(rgba(9, 30, 66, 0.55), rgba(9, 30, 66, 0.55)),
+    var(--bg);
 }
 
 .header {
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 60;
   padding-top: env(safe-area-inset-top, 0px);
-  background: var(--bg-elevated);
-  border-bottom: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: none;
 }
 
 .header-inner {
@@ -40,10 +42,12 @@
   cursor: pointer;
   font: inherit;
   color: var(--text);
+  position: relative;
+  z-index: 1;
 }
 
 .brand:hover {
-  color: var(--accent);
+  color: var(--accent-hover);
 }
 
 .brand-mark {
@@ -52,6 +56,11 @@
   border-radius: 3px;
   object-fit: contain;
   display: block;
+  opacity: 1;
+}
+
+.brand:hover .brand-mark {
+  opacity: 1;
 }
 
 .brand-text {
@@ -59,77 +68,42 @@
   font-size: 0.9375rem;
 }
 
-.breadcrumb {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.8125rem;
-  color: var(--text-muted);
-  flex-wrap: wrap;
-}
-
-.breadcrumb-sep {
-  color: var(--border-strong);
-}
-
-.breadcrumb a,
-.breadcrumb button {
-  color: var(--accent);
-  text-decoration: none;
-  border: none;
-  background: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-}
-
-.breadcrumb a:hover,
-.breadcrumb button:hover {
-  text-decoration: underline;
-}
-
-.breadcrumb-key {
-  font-weight: 600;
-  color: var(--text-muted);
-}
-
 .nav {
   display: flex;
   align-items: center;
   gap: 0.15rem;
   flex-wrap: wrap;
-}
-
-button.nav-link {
-  border: none;
-  background: none;
-  padding: 0.35rem 0.65rem;
-  margin: 0;
-  cursor: pointer;
-  font: inherit;
-  appearance: none;
-  -webkit-appearance: none;
+  position: relative;
+  z-index: 1;
 }
 
 .nav-link {
   border-radius: var(--radius-sm);
   font-size: 0.8125rem;
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--text);
   text-decoration: none;
+  padding: 0.35rem 0.65rem;
   transition:
     color 0.15s ease,
     background 0.15s ease;
 }
 
 .nav-link:hover {
-  color: var(--text);
-  background: var(--surface);
+  color: var(--accent-hover);
+  background: rgba(9, 30, 66, 0.08);
+}
+
+.nav-link--active {
+  color: var(--accent-hover);
+  background: rgba(9, 30, 66, 0.1);
 }
 
 .main {
   flex: 1;
   width: 100%;
+  position: relative;
+  background: transparent;
 }
 
 @media (max-width: 640px) {

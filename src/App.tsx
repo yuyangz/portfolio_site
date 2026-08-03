@@ -10,7 +10,9 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
-          <Route index element={<IssuePage />} />
+          <Route index element={<IssuePage issueKey="YZ-1" />} />
+          <Route path="YZ-1" element={<Navigate to="/" replace />} />
+          <Route path=":issueKey" element={<IssuePage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>

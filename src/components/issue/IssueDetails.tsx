@@ -1,4 +1,11 @@
+import { Link } from 'react-router-dom'
 import portrait from '../../assets/portrait.png'
+import {
+  ISSUES,
+  issuePath,
+  issueTitle,
+  type IssueMeta,
+} from '../../data/issues'
 
 const LABELS = [
   'Python',
@@ -31,10 +38,16 @@ function Chevron({ up = false }: { up?: boolean }) {
   )
 }
 
-export function IssueDetails() {
+export function IssueDetails({ issue }: { issue: IssueMeta }) {
+  const parent = issue.parent ? ISSUES[issue.parent] : null
+
   return (
     <div className="issue-sidebar">
-      <button type="button" className="issue-status-btn issue-status--enter" tabIndex={-1}>
+      <button
+        type="button"
+        className="issue-status-btn issue-status--enter"
+        tabIndex={-1}
+      >
         In Progress
         <Chevron />
       </button>
@@ -44,6 +57,16 @@ export function IssueDetails() {
           <Chevron up />
         </div>
         <dl className="issue-fields">
+          {parent ? (
+            <div className="issue-field">
+              <dt>Parent</dt>
+              <dd>
+                <Link to={issuePath(parent.key)} className="issue-parent-link">
+                  {issueTitle(parent)}
+                </Link>
+              </dd>
+            </div>
+          ) : null}
           <div className="issue-field">
             <dt>Assignee</dt>
             <dd className="issue-field-person">
