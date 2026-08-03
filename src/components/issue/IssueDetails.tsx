@@ -8,13 +8,16 @@ import {
 } from '../../data/issues'
 
 const LABELS = [
-  'Python',
-  'SQL',
   'Product',
   'Analytics',
   'ML',
-  'Agile',
-  'Jira',
+  'Open-to-work',
+  'APM2027',
+  'PM2027',
+  'NBCU',
+  'SAP',
+  'GT',
+  'BU',
 ] as const
 
 function Chevron({ up = false }: { up?: boolean }) {
