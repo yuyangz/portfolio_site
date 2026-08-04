@@ -843,6 +843,23 @@ a.issue-hierarchy-item:hover {
   .issue-fields {
     gap: 0.85rem;
   }
+
+  /* Full-width comments, same as child/linked page rows */
+  .comment-composer {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .comment-composer > .issue-avatar {
+    display: none;
+  }
+
+  .comment-form {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
 }
 
 @media (max-width: 560px) {
@@ -857,10 +874,6 @@ a.issue-hierarchy-item:hover {
 
   .desc-muted {
     white-space: normal;
-  }
-
-  .comment-composer {
-    flex-direction: column;
   }
 
   .child-row {

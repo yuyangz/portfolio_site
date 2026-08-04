@@ -13,7 +13,10 @@
   top: 0;
   z-index: 60;
   padding-top: env(safe-area-inset-top, 0px);
-  background: transparent;
+  /* Match page backdrop so scrolled content doesn’t show through */
+  background:
+    linear-gradient(rgba(9, 30, 66, 0.55), rgba(9, 30, 66, 0.55)),
+    var(--bg);
   border-bottom: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow: none;
 }
@@ -107,6 +110,12 @@
 }
 
 @media (max-width: 640px) {
+  .header {
+    /* Don’t pin over ticket content on small screens */
+    position: relative;
+    z-index: 1;
+  }
+
   .header-inner {
     flex-wrap: wrap;
     padding-top: 0.65rem;
