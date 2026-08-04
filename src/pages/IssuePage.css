@@ -480,14 +480,10 @@ a.issue-hierarchy-item:hover {
 
 .desc-company {
   margin-bottom: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border);
 }
 
 .desc-company:last-child {
   margin-bottom: 0;
-  padding-bottom: 0;
-  border-bottom: none;
 }
 
 .desc-company-head,

@@ -6,12 +6,12 @@ const experienceByCompany = [
       {
         title: 'Product Management Intern',
         period: 'Jun 2026 — Present',
-        subtitle: 'Summer Media Tech Program - Content Supply Chain Team',
+        subtitle: 'Summer Media Tech Program - Scheduling & Distribution Products',
       },
       {
         title: 'Product & Program Management Intern',
         period: 'Sep 2025 — May 2026',
-        subtitle: 'Academic Year Program - Global Streaming',
+        subtitle: 'Academic Year Program - Global Streaming Platforms',
       },
     ],
   },
