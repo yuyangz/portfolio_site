@@ -18,7 +18,7 @@ export const ISSUES: Record<IssueKey, IssueMeta> = {
     key: 'YZ-1',
     type: 'epic',
     label: 'Home',
-    summary: 'Product-minded builder — PM, analytics & machine learning',
+    summary: 'Product-minded builder — PM, analytics, & machine learning',
     children: ['YZ-2', 'YZ-3', 'YZ-4'],
   },
   'YZ-2': {
