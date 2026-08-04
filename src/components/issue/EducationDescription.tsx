@@ -26,21 +26,21 @@ export function EducationDescription() {
   return (
     <section id="description" className="issue-panel" aria-labelledby="desc-heading">
       <h2 id="desc-heading">Description</h2>
-      <ul className="desc-edu">
+      <div className="desc-companies">
         {education.map((e) => (
-          <li key={e.school}>
-            <div className="desc-role-row">
+          <div key={e.school} className="desc-company">
+            <div className="desc-company-head">
               <strong>{e.school}</strong>
               <span className="desc-muted">{e.dates}</span>
             </div>
             <div className="desc-role-row">
-              <span>{e.degree}</span>
+              <span className="desc-role-title">{e.degree}</span>
               {e.gpa ? <span className="desc-muted">{e.gpa}</span> : null}
             </div>
             {e.minor ? <p className="desc-role-sub">{e.minor}</p> : null}
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </section>
   )
 }

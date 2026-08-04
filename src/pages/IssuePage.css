@@ -470,8 +470,6 @@ a.issue-hierarchy-item:hover {
 }
 
 .desc-companies,
-.desc-edu,
-.desc-skills,
 .desc-role-list {
   list-style: none;
   margin: 0;
@@ -519,25 +517,8 @@ a.issue-hierarchy-item:hover {
   color: var(--text-muted);
 }
 
-.desc-edu li {
-  margin-bottom: 0.85rem;
-}
-
-.desc-edu li:last-child {
-  margin-bottom: 0;
-}
-
-.desc-skills li {
-  display: grid;
-  gap: 0.15rem;
-  margin-bottom: 0.65rem;
-  font-size: 0.875rem;
-}
-
-.desc-skills-label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--text-muted);
+.desc-skills-items {
+  margin: 0.15rem 0 0;
 }
 
 /* —— Attachments —— */
