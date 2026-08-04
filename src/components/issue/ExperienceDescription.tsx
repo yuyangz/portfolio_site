@@ -34,7 +34,7 @@ export function ExperienceDescription() {
     <section id="description" className="issue-panel" aria-labelledby="desc-heading">
       <h2 id="desc-heading">Description</h2>
       <p className="issue-panel-hint">
-        (For the full resume, reach out via Contact on the Home Page or LinkedIn.)
+        (For full resume, reach out via the contact form on the Home Page or LinkedIn)
       </p>
       <div className="desc-companies">
         {experienceByCompany.map((block) => (
