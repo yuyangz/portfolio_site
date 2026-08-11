@@ -102,7 +102,7 @@ export function Contact() {
               <input
                 type="email"
                 name="email"
-                placeholder="So I can reply"
+                placeholder="name@example.com"
                 autoComplete="email"
                 required
               />
