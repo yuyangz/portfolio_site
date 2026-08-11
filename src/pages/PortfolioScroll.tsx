@@ -1,4 +1,3 @@
-import { useMobileLayout } from '../hooks/useMobileLayout'
 import { useSnapSectionKeyboardNav } from '../hooks/useSnapSectionKeyboardNav'
 import { useSectionScrollSpy } from '../hooks/useSectionScrollSpy'
 import { Home } from './Home'
@@ -8,12 +7,12 @@ import { Contact } from './Contact'
 import { SecretPokemon } from './SecretPokemon'
 
 export function PortfolioScroll() {
-  const isMobileLayout = useMobileLayout()
   useSectionScrollSpy()
   useSnapSectionKeyboardNav()
 
   return (
     <>
+      <SecretPokemon />
       <section
         id="home"
         className="snap-section snap-section--home"
@@ -57,7 +56,6 @@ export function PortfolioScroll() {
           </span>
         </div>
       </footer>
-      {!isMobileLayout ? <SecretPokemon /> : null}
     </>
   )
 }

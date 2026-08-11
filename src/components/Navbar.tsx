@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import {
   SECTION_IDS,
   type SectionId,
@@ -6,6 +5,7 @@ import {
 } from '../context/ScrollNavContext'
 
 const NAV_LABELS: Record<SectionId, string> = {
+  secret: 'Welcome',
   home: 'Home',
   resume: 'Resume',
   projects: 'Projects',
@@ -13,30 +13,9 @@ const NAV_LABELS: Record<SectionId, string> = {
 }
 
 export function Navbar() {
-  const { activeSection, scrollToSection, scrollRootRef } = useScrollNav()
+  const { activeSection, scrollToSection } = useScrollNav()
   const stepIndex = Math.max(0, SECTION_IDS.indexOf(activeSection))
   const progressPct = ((stepIndex + 1) / SECTION_IDS.length) * 100
-  const [secretVisible, setSecretVisible] = useState(false)
-  const navActiveSection: SectionId | null = secretVisible ? null : activeSection
-
-  useEffect(() => {
-    const root = scrollRootRef.current
-    const secret = document.getElementById('secret')
-    if (!root || !secret) return
-
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        setSecretVisible(entry.isIntersecting)
-      },
-      {
-        root,
-        threshold: 0.05,
-      },
-    )
-
-    io.observe(secret)
-    return () => io.disconnect()
-  }, [scrollRootRef])
 
   return (
     <header className="header">
@@ -44,8 +23,8 @@ export function Navbar() {
         <button
           type="button"
           className="brand"
-          onClick={() => scrollToSection('home')}
-          aria-label="Home"
+          onClick={() => scrollToSection('secret')}
+          aria-label="Welcome"
         >
           <span className="brand-mark" aria-hidden />
           <span className="brand-text">Yuyang Zhang</span>
@@ -55,30 +34,28 @@ export function Navbar() {
             <button
               key={id}
               type="button"
-              className={`nav-link${navActiveSection === id ? ' nav-link--active' : ''}`}
+              className={`nav-link${activeSection === id ? ' nav-link--active' : ''}`}
               onClick={() => scrollToSection(id)}
-              aria-current={navActiveSection === id ? 'page' : undefined}
+              aria-current={activeSection === id ? 'page' : undefined}
             >
               {NAV_LABELS[id]}
             </button>
           ))}
         </nav>
       </div>
-      {!secretVisible ? (
+      <div
+        className="scroll-progress-track"
+        role="progressbar"
+        aria-valuemin={1}
+        aria-valuemax={SECTION_IDS.length}
+        aria-valuenow={stepIndex + 1}
+        aria-label="Site sections"
+      >
         <div
-          className="scroll-progress-track"
-          role="progressbar"
-          aria-valuemin={1}
-          aria-valuemax={SECTION_IDS.length}
-          aria-valuenow={stepIndex + 1}
-          aria-label="Site sections"
-        >
-          <div
-            className="scroll-progress-fill"
-            style={{ width: `${progressPct}%` }}
-          />
-        </div>
-      ) : null}
+          className="scroll-progress-fill"
+          style={{ width: `${progressPct}%` }}
+        />
+      </div>
     </header>
   )
 }

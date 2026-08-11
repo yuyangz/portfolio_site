@@ -860,6 +860,10 @@ a.project-card:focus-visible {
   min-height: calc(100dvh - var(--header-h) - 4rem);
 }
 
+.secret-scroll-hint {
+  margin-top: auto;
+}
+
 .secret-page .page-header {
   margin-bottom: 0.5rem;
   width: 100%;

@@ -14,7 +14,13 @@ import {
   scrollSnapAlignTop,
 } from '../utils/scrollRootGeometry'
 
-export const SECTION_IDS = ['home', 'resume', 'projects', 'contact'] as const
+export const SECTION_IDS = [
+  'secret',
+  'home',
+  'resume',
+  'projects',
+  'contact',
+] as const
 export type SectionId = (typeof SECTION_IDS)[number]
 
 type ScrollNavContextValue = {
@@ -31,7 +37,7 @@ const ScrollNavContext = createContext<ScrollNavContextValue | null>(null)
 export function ScrollNavProvider({ children }: { children: ReactNode }) {
   const scrollRootRef = useRef<HTMLElement | null>(null)
   const navScrollLockRef = useRef<SectionId | null>(null)
-  const [activeSection, setActiveSection] = useState<SectionId>('home')
+  const [activeSection, setActiveSection] = useState<SectionId>('secret')
 
   const scrollToSection = useCallback(
     (id: SectionId, options?: { behavior?: ScrollBehavior }) => {

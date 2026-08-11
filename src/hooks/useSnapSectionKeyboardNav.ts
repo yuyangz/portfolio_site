@@ -33,14 +33,7 @@ function keyboardStopIndex(root: HTMLElement): number {
 
   const tContact = scrollSnapAlignTop(contact, root)
   const tFooter = footerKeyboardScrollTop(root, footer)
-  const secret = document.getElementById('secret')
-  const tBeforeSecret = secret
-    ? Math.max(0, scrollSnapAlignTop(secret, root) - 12)
-    : Number.POSITIVE_INFINITY
-
-  const inSecret = root.scrollTop > tBeforeSecret + 2
-  const footerShowing =
-    inSecret || root.scrollTop >= tFooter - FOOTER_REACHED_TOL
+  const footerShowing = root.scrollTop >= tFooter - FOOTER_REACHED_TOL
 
   if (footerShowing) {
     return KEYBOARD_STOPS.length - 1
@@ -58,7 +51,7 @@ function keyboardStopIndex(root: HTMLElement): number {
   }
 
   /* Between full Contact and the footer target: still “on Contact” so ↓ scrolls to the footer once. */
-  return 3
+  return SECTION_IDS.indexOf('contact')
 }
 
 function allowSnapArrowNav(target: Element, scrollRoot: HTMLElement): boolean {
@@ -93,8 +86,9 @@ export function useSnapSectionKeyboardNav() {
 
       const i = keyboardStopIndex(root)
       const delta = e.key === 'ArrowDown' ? 1 : -1
+      const contactIndex = SECTION_IDS.indexOf('contact')
 
-      /* Footer showing (or secret): never move further down via keyboard. */
+      /* Footer showing: never move further down via keyboard. */
       if (i === KEYBOARD_STOPS.length - 1 && delta === 1) {
         return
       }
@@ -103,7 +97,7 @@ export function useSnapSectionKeyboardNav() {
        * Mid-scroll between Contact snap and footer target: ↑ snaps back to full Contact first
        * (hides any partial footer motion), then ↑ again goes to Projects.
        */
-      if (delta === -1 && i === 3) {
+      if (delta === -1 && i === contactIndex) {
         const contact = document.getElementById('contact')
         const footer = document.getElementById('footer')
         if (contact && footer) {
@@ -125,13 +119,8 @@ export function useSnapSectionKeyboardNav() {
       if (stopId === 'footer') {
         const footer = document.getElementById('footer')
         if (!footer) return
-        const secret = document.getElementById('secret')
-        const beforeSecret = secret
-          ? Math.max(0, scrollSnapAlignTop(secret, root) - 12)
-          : undefined
         programmaticScrollTo(root, footerKeyboardScrollTop(root, footer), {
           behavior: 'smooth',
-          postRestoreMax: beforeSecret,
         })
         return
       }

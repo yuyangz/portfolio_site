@@ -22,15 +22,17 @@ export function scrollSnapAlignEnd(el: HTMLElement, root: HTMLElement): number {
 }
 
 /**
- * Scroll position for “contact + footer” keyboard stop: footer end-aligned, but capped so mandatory
- * snap cannot jump to `#secret` (footer end and secret start can be adjacent in scroll space).
+ * Scroll position for “contact + footer” keyboard stop: footer end-aligned.
+ * If a later `#secret` section follows the footer, cap so snap cannot jump into it.
  */
 export function footerKeyboardScrollTop(root: HTMLElement, footer: HTMLElement): number {
   const yEnd = scrollSnapAlignEnd(footer, root)
   const secret = document.getElementById('secret')
   if (!secret) return yEnd
-  const yBeforeSecret = Math.max(0, scrollSnapAlignTop(secret, root) - 12)
-  return Math.min(yEnd, yBeforeSecret)
+  const ySecret = scrollSnapAlignTop(secret, root)
+  /* Secret-first layout: secret is above the footer — do not clamp. */
+  if (ySecret <= yEnd) return yEnd
+  return Math.min(yEnd, Math.max(0, ySecret - 12))
 }
 
 /**

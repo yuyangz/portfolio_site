@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
 import pokemonCardBack from '../assets/pokemon-card-back.png'
 import pokeballButton from '../assets/pokeball-button.png'
+import { useScrollNav } from '../context/ScrollNavContext'
 
 type CardBrief = { id?: string }
 type CardImage = { low?: string; high?: string }
@@ -83,6 +84,7 @@ function listFromApiJson(json: unknown): CardBrief[] {
 }
 
 export function SecretPokemon() {
+  const { scrollToSection } = useScrollNav()
   const CARD_INTRO_MS = 5000
   const CARD_INTRO_TOTAL_DEGREES = 2880
   const [hasPressedHuh, setHasPressedHuh] = useState(false)
@@ -168,6 +170,7 @@ export function SecretPokemon() {
   const showSpinningPokeball =
     (hasPressedHuh && loading) ||
     (hasPressedHuh && Boolean(imageSrc) && !cardFrontLoaded)
+  const showHomeScrollHint = hasPressedHuh
 
   async function fetchRandomCard() {
     setHasPressedHuh(true)
@@ -254,12 +257,12 @@ export function SecretPokemon() {
     <section
       id="secret"
       className="snap-section snap-section--secret"
-      aria-label="Secret section"
+      aria-label="Welcome"
     >
       <div className="snap-section-inner">
         <div className="page secret-page">
           <header className="page-header">
-            <h1>Secret Section: What&apos;s your Pokemon card?</h1>
+            <h1>What&apos;s your Pokemon card?</h1>
             <p
               className={`secret-subtitle${showSpinningPokeball ? ' secret-subtitle--concealed' : ''}`}
               aria-hidden={showSpinningPokeball}
@@ -356,6 +359,29 @@ export function SecretPokemon() {
               <p className="secret-set-name">(From {card.set.name})</p>
             ) : null}
           </div>
+          {showHomeScrollHint ? (
+            <button
+              type="button"
+              className="home-scroll-hint secret-scroll-hint"
+              onClick={() => scrollToSection('home')}
+              aria-label="Scroll to Home"
+            >
+              <svg
+                className="home-scroll-hint-arrow"
+                width={24}
+                height={24}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+          ) : null}
         </div>
       </div>
     </section>
