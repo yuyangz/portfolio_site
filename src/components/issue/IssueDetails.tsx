@@ -11,6 +11,7 @@ const LABELS = [
   'Product',
   'Analytics',
   'ML',
+  'AI',
   'Open-to-work',
   'APM2027',
   'PM2027',

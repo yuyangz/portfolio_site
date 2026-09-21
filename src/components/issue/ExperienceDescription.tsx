@@ -5,7 +5,7 @@ const experienceByCompany = [
     roles: [
       {
         title: 'Product Management Intern',
-        period: 'Jun 2026 — Present',
+        period: 'Jun 2026 — Sep 2026',
         subtitle: 'Summer Media Tech Program - Scheduling & Distribution Products',
       },
       {

@@ -129,7 +129,7 @@ export function IssueComments() {
             disabled={submitting}
             aria-busy={submitting}
           >
-            {submitting ? 'Sending…' : 'Save'}
+            {submitting ? 'Sending…' : 'Send'}
           </button>
           {submitted ? (
             <p className="form-hint form-hint--success" role="status">
